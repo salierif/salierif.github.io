@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.hcatek.com/"/>
-  <updated>2020-07-27T09:13:38.168Z</updated>
+  <updated>2020-07-29T08:00:22.536Z</updated>
   <id>https://blog.hcatek.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git备忘录</title>
+    <link href="https://blog.hcatek.com/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    <id>https://blog.hcatek.com/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/</id>
+    <published>2020-07-28T11:24:47.000Z</published>
+    <updated>2020-07-29T08:00:22.536Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;管理员视角&quot;&gt;管理员视角&lt;a class=&quot;post-anchor&quot; href=&quot;#管理员视角&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h4 id=&quot;场景一&quot;&gt;场景一&lt;a class=&quot;post-anchor&quot; href=&quot;#场景一
+      
+    
+    </summary>
+    
+    
+      <category term="Notes" scheme="https://blog.hcatek.com/categories/Notes/"/>
+    
+    
+      <category term="git" scheme="https://blog.hcatek.com/tags/git/"/>
+    
+      <category term="linux" scheme="https://blog.hcatek.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>

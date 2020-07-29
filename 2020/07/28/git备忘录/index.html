@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     
     <title>
-      Hello World - Salieri的技术小栈
+      git备忘录 - Salieri的技术小栈
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -31,7 +31,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#管理员视角"><span class="toc-text">管理员视角</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#场景一"><span class="toc-text">场景一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#场景二"><span class="toc-text">场景二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户视角"><span class="toc-text">用户视角</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#git快速上手"><span class="toc-text">git快速上手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git目录下的一些配置解读"><span class="toc-text">git目录下的一些配置解读</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -169,40 +169,140 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">Hello World</div>
+      <div class="title">git备忘录</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>2020/07/27</span>
+          <span>2020/07/28</span>
         </span>
 
         
-          <span class="item leancloud-visitors" id="/2020/07/27/hello-world/" data-flag-title="Hello World">
+          <span class="item leancloud-visitors" id="/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/" data-flag-title="git备忘录">
             <span class="iconfont icon-eye1"></span>
             <span class="leancloud-visitors-count"></span>
           </span>
         
 
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Notes">Notes</a>
+                
+              
+          </span>
+        </span>
         
         
-        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/git">git</a>
+                  
+                
+                  
+                    <a href="/tags/linux">linux</a>
+                  
+                
+            </span>
+          </span>
+         
       </div>
       <div>
       </div>
     </div>
-    <html><head></head><body><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start<a class="post-anchor" href="#Quick-Start"></a></h2><h3 id="Create-a-new-post">Create a new post<a class="post-anchor" href="#Create-a-new-post"></a></h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
+    <html><head></head><body><h2 id="管理员视角">管理员视角<a class="post-anchor" href="#管理员视角"></a></h2><h4 id="场景一">场景一<a class="post-anchor" href="#场景一"></a></h4><p><strong>忍受不了github的网速/不放心代码托管平台的数据安全/无所谓图形化界面。</strong></p>
+<p>创建本地git远程仓库充当git服务器</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo git init --bare repo.git</span><br></pre></td></tr></tbody></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server">Run server<a class="post-anchor" href="#Run-server"></a></h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
+<p>考虑到可能会多人使用（实验室、小公司），把仓库所有者设置为多人用户组</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R git:groupname repo.git</span><br></pre></td></tr></tbody></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files">Generate static files<a class="post-anchor" href="#Generate-static-files"></a></h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
+<p>变更读写权限</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomod -R 775 repo.git</span><br></pre></td></tr></tbody></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites<a class="post-anchor" href="#Deploy-to-remote-sites"></a></h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
+<p>变更目录属性，让此目录下创建的文件继承该目录属性。参考<a href="https://en.wikipedia.org/wiki/Setuid" target="_blank" rel="noopener">setuid</a> 没有这一步其他用户无法对仓库操作</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd repo.git</span><br><span class="line">chmod g+rws objects/</span><br><span class="line">chmod g+rws refs/</span><br></pre></td></tr></tbody></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>修改git仓库配置文件<code>vim repo.git/config</code>。在最后一行添加<code>sharedRepository = 1</code>。切换至其他用户测试git仓库。</p>
+<p><em>此方式创建的git仓库，可以局域网共享。使用方式为</em></p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone <ip地址>:/repo.git</span><br><span class="line">cd repo.git</span><br><span class="line">git remote remove origin</span><br><span class="line">git remote add origin <username>@<ip地址>:/repo.git</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h4 id="场景二">场景二<a class="post-anchor" href="#场景二"></a></h4><p><strong>场景一的基础上条件上，希望能使用图形界面。</strong></p>
+<p>配置gitlab-ce。参考<a href="https://blog.strongwong.top/posts/%E4%BD%BF%E7%94%A8-Docker-GitLab-%E6%9E%84%E5%BB%BA%E8%87%AA%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1.html" target="_blank" rel="noopener">Docker+gitlab搭建自己的代码仓库</a>。</p>
+<h2 id="用户视角">用户视角<a class="post-anchor" href="#用户视角"></a></h2><h4 id="git快速上手">git快速上手<a class="post-anchor" href="#git快速上手"></a></h4><ul>
+<li><p>创建git仓库</p>
+  <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir testrepo</span><br><span class="line">cd testrepo</span><br><span class="line">git init</span><br><span class="line">git config user.name "name"</span><br><span class="line">git config user.email "name@domain.com"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>  <em>配置user.names/email时可选<code>--global</code>参数，全局配置。</em></p>
+</li>
+<li><p>常用命令</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>git add</code></td>
+<td align="center">添加到暂存区</td>
+</tr>
+<tr>
+<td align="center"><code>git status</code></td>
+<td align="center">查看当前暂存区状态</td>
+</tr>
+<tr>
+<td align="center"><code>git commit</code></td>
+<td align="center">添加cimmit</td>
+</tr>
+<tr>
+<td align="center"><code>git log</code></td>
+<td align="center">查看历史commit</td>
+</tr>
+<tr>
+<td align="center"><code>git remote</code></td>
+<td align="center">配置远程仓库</td>
+</tr>
+<tr>
+<td align="center"><code>git push</code></td>
+<td align="center">推送</td>
+</tr>
+<tr>
+<td align="center"><code>git pull</code></td>
+<td align="center">拉取</td>
+</tr>
+<tr>
+<td align="center"><code>git checkout</code></td>
+<td align="center">操作分支</td>
+</tr>
+</tbody></table>
+<p>参看各类教程，掌握以上几个命令，即可完成git常用操作。</p>
+<p><em>遇事不决<code>git <cmd> --help</code></em></p>
+<h4 id="git目录下的一些配置解读">git目录下的一些配置解读<a class="post-anchor" href="#git目录下的一些配置解读"></a></h4><table>
+<thead>
+<tr>
+<th align="center">文件名</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>.gitignore</code></td>
+<td align="center">忽视指定文件/目录</td>
+</tr>
+<tr>
+<td align="center"><code>.gitmodule</code></td>
+<td align="center">在git仓库中添加其他仓库作为子模块</td>
+</tr>
+</tbody></table>
 </body></html>
 
   
@@ -229,10 +329,10 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/">git备忘录</a>
-        
     </div>
     <div class="item right">
+        
+          <a href="/2020/07/27/hello-world/">Hello World</a>
         
     </div>
   </div>
@@ -244,7 +344,7 @@
       作者：<a href="https://blog.hcatek.com">Salieri</a>
     </div>
     <div class="link">
-      链接：<a href="https://blog.hcatek.com/2020/07/27/hello-world/">https://blog.hcatek.com/2020/07/27/hello-world/</a>
+      链接：<a href="https://blog.hcatek.com/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/">https://blog.hcatek.com/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/</a>
     </div>
     <div class="declare">
       本文基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>许可协议发布，欢迎转载，演绎，但是必须保留本文署名，且不得用于商业目的。如您有任何疑问或者授权方面的协商，请<a href="mailto:salierif@outlook.com">与我联系</a>。
