@@ -218,27 +218,27 @@
     </div>
     <html><head></head><body><h2 id="管理员视角">管理员视角<a class="post-anchor" href="#管理员视角"></a></h2><h4 id="场景一">场景一<a class="post-anchor" href="#场景一"></a></h4><p><strong>忍受不了github的网速/不放心代码托管平台的数据安全/无所谓图形化界面。</strong></p>
 <p>创建本地git远程仓库充当git服务器</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo git init --bare repo.git</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">sudo git init --bare repo.git<br></code></pre></td></tr></tbody></table></figure>
 
 <p>考虑到可能会多人使用（实验室、小公司），把仓库所有者设置为多人用户组</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R git:groupname repo.git</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">chown -R git:groupname repo.git<br></code></pre></td></tr></tbody></table></figure>
 
 <p>变更读写权限</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomod -R 775 repo.git</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">chomod -R 775 repo.git<br></code></pre></td></tr></tbody></table></figure>
 
 <p>变更目录属性，让此目录下创建的文件继承该目录属性。参考<a href="https://en.wikipedia.org/wiki/Setuid" target="_blank" rel="noopener">setuid</a> 没有这一步其他用户无法对仓库操作</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd repo.git</span><br><span class="line">chmod g+rws objects/</span><br><span class="line">chmod g+rws refs/</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">cd repo.git<br>chmod g+rws objects/<br>chmod g+rws refs/<br></code></pre></td></tr></tbody></table></figure>
 
 <p>修改git仓库配置文件<code>vim repo.git/config</code>。在最后一行添加<code>sharedRepository = 1</code>。切换至其他用户测试git仓库。</p>
 <p><em>此方式创建的git仓库，可以局域网共享。使用方式为</em></p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone <ip地址>:/repo.git</span><br><span class="line">cd repo.git</span><br><span class="line">git remote remove origin</span><br><span class="line">git remote add origin <username>@<ip地址>:/repo.git</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">git clone ipaddress:/repo.git<br>cd repo.git<br>git remote remove origin<br>git remote add origin username@ipaddress:/repo.git<br></code></pre></td></tr></tbody></table></figure>
 
 
 <h4 id="场景二">场景二<a class="post-anchor" href="#场景二"></a></h4><p><strong>场景一的基础上条件上，希望能使用图形界面。</strong></p>
 <p>配置gitlab-ce。参考<a href="https://blog.strongwong.top/posts/%E4%BD%BF%E7%94%A8-Docker-GitLab-%E6%9E%84%E5%BB%BA%E8%87%AA%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1.html" target="_blank" rel="noopener">Docker+gitlab搭建自己的代码仓库</a>。</p>
 <h2 id="用户视角">用户视角<a class="post-anchor" href="#用户视角"></a></h2><h4 id="git快速上手">git快速上手<a class="post-anchor" href="#git快速上手"></a></h4><ul>
 <li><p>创建git仓库</p>
-  <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir testrepo</span><br><span class="line">cd testrepo</span><br><span class="line">git init</span><br><span class="line">git config user.name "name"</span><br><span class="line">git config user.email "name@domain.com"</span><br></pre></td></tr></tbody></table></figure>
+  <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">mkdir testrepo<br>cd testrepo<br>git init<br>git config user.name "name"<br>git config user.email "name@domain.com"<br></code></pre></td></tr></tbody></table></figure>
 
 <p>  <em>配置user.names/email时可选<code>--global</code>参数，全局配置。</em></p>
 </li>
@@ -262,7 +262,7 @@
 </tr>
 <tr>
 <td align="center"><code>git commit</code></td>
-<td align="center">添加cimmit</td>
+<td align="center">添加commit</td>
 </tr>
 <tr>
 <td align="center"><code>git log</code></td>
@@ -286,7 +286,7 @@
 </tr>
 </tbody></table>
 <p>参看各类教程，掌握以上几个命令，即可完成git常用操作。</p>
-<p><em>遇事不决<code>git <cmd> --help</code></em></p>
+<p><em>遇事不决<code>git cmd --help</code></em></p>
 <h4 id="git目录下的一些配置解读">git目录下的一些配置解读<a class="post-anchor" href="#git目录下的一些配置解读"></a></h4><table>
 <thead>
 <tr>
