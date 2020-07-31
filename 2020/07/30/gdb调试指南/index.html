@@ -31,7 +31,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#openocd"><span class="toc-text">openocd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景模拟"><span class="toc-text">场景模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#连接openocd"><span class="toc-text">连接openocd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连接gdb"><span class="toc-text">连接gdb</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#openocd"><span class="toc-text">openocd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景模拟"><span class="toc-text">场景模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#连接openocd"><span class="toc-text">连接openocd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连接gdb"><span class="toc-text">连接gdb</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自动化配置"><span class="toc-text">自动化配置</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -232,6 +232,9 @@
 <h4 id="连接gdb">连接gdb<a class="post-anchor" href="#连接gdb"></a></h4><p>创建一个新的终端,输入<code>riscv64-unknown-elf-gdb</code>进入gdb。随后在gdb的命令行中经行如下操作</p>
 <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">target remote localhost:3333                        ## 连接调试设备<br>file /folder/filename                               ## gdb打开要加载的sd卡内容<br>load                                                ## 把Linux镜像加load进ddr中<br>layout asm                                          ## gdb终端中显示汇源源码<br>set $pc=0x10ac8                                     ## 把pc指针设到需要加载linux设备树的地址<br>si                                                  ## 单步执行<br>b boot_other_hart                                   ## 在boot_other_hart语句出设置断点<br>c                                                   ## 全速执行，一直执行到断点处<br>restore /folder/filename.dtb binary 0x81200000      ## 加载设备树文件<br>c<br></code></pre></td></tr></tbody></table></figure>
 <p>此段涉及到文件路径，地址等命令都是伪代码，毕竟是实际例子来讲解，各位自行替换。大致理解不同命令起什么作用就行。更多gdb命令请自行查阅相关文档。</p>
+<h4 id="自动化配置">自动化配置<a class="post-anchor" href="#自动化配置"></a></h4><p>除此之外，可能会觉得gdb里面输这么多指令肯定很麻烦。可以新建一个文本文件（如<code>gdbinit</code>），将gdb命令都放进去。<br>运行gdb时候使用<code>-x</code>参数。</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">riscv64-unknown-elf-gdb -x /folder/gdbinit<br></code></pre></td></tr></tbody></table></figure>
+
 <p><strong>同样的openocd还可以配合telnet等工具使用，各位自行发掘</strong><br>我写博客主要是强化自己记忆力，假使有遇到相同难题，欢迎留言交流。</p>
 </body></html>
 
