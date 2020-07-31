@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     
     <title>
-      git备忘录 - Salieri的技术小栈
+      openocd+gdb调试指北（riscv） - Salieri的技术小栈
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -31,7 +31,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#管理员视角"><span class="toc-text">管理员视角</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#场景一"><span class="toc-text">场景一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#场景二"><span class="toc-text">场景二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户视角"><span class="toc-text">用户视角</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#git快速上手"><span class="toc-text">git快速上手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git目录下的一些配置解读"><span class="toc-text">git目录下的一些配置解读</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#openocd"><span class="toc-text">openocd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景模拟"><span class="toc-text">场景模拟</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#连接openocd"><span class="toc-text">连接openocd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连接gdb"><span class="toc-text">连接gdb</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -169,15 +169,15 @@
         <article class="post-entry">
     <div class="header">
       
-      <div class="title">git备忘录</div>
+      <div class="title">openocd+gdb调试指北（riscv）</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>2020/07/28</span>
+          <span>2020/07/30</span>
         </span>
 
         
-          <span class="item leancloud-visitors" id="/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/" data-flag-title="git备忘录">
+          <span class="item leancloud-visitors" id="/2020/07/30/gdb%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/" data-flag-title="openocd+gdb调试指北（riscv）">
             <span class="iconfont icon-eye1"></span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -202,11 +202,15 @@
             <span>
                 
                   
-                    <a href="/tags/git">git</a>
+                    <a href="/tags/linux">linux</a>
                   
                 
                   
-                    <a href="/tags/linux">linux</a>
+                    <a href="/tags/gdb">gdb</a>
+                  
+                
+                  
+                    <a href="/tags/openocd">openocd</a>
                   
                 
             </span>
@@ -216,93 +220,19 @@
       <div>
       </div>
     </div>
-    <html><head></head><body><h2 id="管理员视角">管理员视角<a class="post-anchor" href="#管理员视角"></a></h2><h4 id="场景一">场景一<a class="post-anchor" href="#场景一"></a></h4><p><strong>忍受不了github的网速/不放心代码托管平台的数据安全/无所谓图形化界面。</strong></p>
-<p>创建本地git远程仓库充当git服务器</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">sudo git init --bare repo.git<br></code></pre></td></tr></tbody></table></figure>
-
-<p>考虑到可能会多人使用（实验室、小公司），把仓库所有者设置为多人用户组</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">chown -R git:groupname repo.git<br></code></pre></td></tr></tbody></table></figure>
-
-<p>变更读写权限</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">chomod -R 775 repo.git<br></code></pre></td></tr></tbody></table></figure>
-
-<p>变更目录属性，让此目录下创建的文件继承该目录属性。参考<a href="https://en.wikipedia.org/wiki/Setuid" target="_blank" rel="noopener">setuid</a> 没有这一步其他用户无法对仓库操作</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">cd repo.git<br>chmod g+rws objects/<br>chmod g+rws refs/<br></code></pre></td></tr></tbody></table></figure>
-
-<p>修改git仓库配置文件<code>vim repo.git/config</code>。在最后一行添加<code>sharedRepository = 1</code>。切换至其他用户测试git仓库。</p>
-<p><em>此方式创建的git仓库，可以局域网共享。使用方式为</em></p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">git clone ipaddress:/repo.git<br>cd repo.git<br>git remote remove origin<br>git remote add origin username@ipaddress:/repo.git<br></code></pre></td></tr></tbody></table></figure>
-
-
-<h4 id="场景二">场景二<a class="post-anchor" href="#场景二"></a></h4><p><strong>场景一的基础上条件上，希望能使用图形界面。</strong></p>
-<p>配置gitlab-ce。参考<a href="https://blog.strongwong.top/posts/%E4%BD%BF%E7%94%A8-Docker-GitLab-%E6%9E%84%E5%BB%BA%E8%87%AA%E7%94%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1.html" target="_blank" rel="noopener">Docker+gitlab搭建自己的代码仓库</a>。</p>
-<h2 id="用户视角">用户视角<a class="post-anchor" href="#用户视角"></a></h2><h4 id="git快速上手">git快速上手<a class="post-anchor" href="#git快速上手"></a></h4><ul>
-<li><p>创建git仓库</p>
-  <figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">mkdir testrepo<br>cd testrepo<br>git init<br>git config user.name "name"<br>git config user.email "name@domain.com"<br></code></pre></td></tr></tbody></table></figure>
-
-<p>  <em>配置user.names/email时可选<code>--global</code>参数，全局配置。</em></p>
-</li>
-<li><p>常用命令</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">功能描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><code>git add</code></td>
-<td align="center">添加到暂存区</td>
-</tr>
-<tr>
-<td align="center"><code>git status</code></td>
-<td align="center">查看当前暂存区状态</td>
-</tr>
-<tr>
-<td align="center"><code>git commit</code></td>
-<td align="center">添加commit</td>
-</tr>
-<tr>
-<td align="center"><code>git log</code></td>
-<td align="center">查看历史commit</td>
-</tr>
-<tr>
-<td align="center"><code>git remote</code></td>
-<td align="center">配置远程仓库</td>
-</tr>
-<tr>
-<td align="center"><code>git push</code></td>
-<td align="center">推送</td>
-</tr>
-<tr>
-<td align="center"><code>git pull</code></td>
-<td align="center">拉取</td>
-</tr>
-<tr>
-<td align="center"><code>git checkout</code></td>
-<td align="center">操作分支</td>
-</tr>
-</tbody></table>
-<p>参看各类教程，掌握以上几个命令，即可完成git常用操作。</p>
-<p><em>遇事不决<code>git cmd --help</code></em></p>
-<h4 id="git目录下的一些配置解读">git目录下的一些配置解读<a class="post-anchor" href="#git目录下的一些配置解读"></a></h4><table>
-<thead>
-<tr>
-<th align="center">文件名</th>
-<th align="center">功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><code>.gitignore</code></td>
-<td align="center">忽视指定文件/目录</td>
-</tr>
-<tr>
-<td align="center"><code>.gitmodule</code></td>
-<td align="center">在git仓库中添加其他仓库作为子模块</td>
-</tr>
-</tbody></table>
+    <html><head></head><body><h2 id="openocd">openocd<a class="post-anchor" href="#openocd"></a></h2><p><strong>配置好openocd的配置文件</strong><br>如下所示，更改调试速度，接口类型，usb设备pid等信息。保存为<code>debug.cfg</code>文件</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">adapter_khz     1000<br>interface ftdi<br>ftdi_device_desc "Digilent USB Device"<br>ftdi_vid_pid 0x0403 0x6014<br>ftdi_channel 0<br>ftdi_layout_init 0x00e8 0x60eb<br>reset_config none<br>set _CHIPNAME riscv<br>jtag newtap $_CHIPNAME cpu -irlen 5<br>set _TARGETNAME $_CHIPNAME.cpu<br>target create $_TARGETNAME riscv -chain-position $_TARGETNAME -coreid 0<br>gdb_report_data_abort enable<br>gdb_report_register_access_error enable<br>riscv set_reset_timeout_sec 120<br>riscv set_command_timeout_sec 120<br>riscv set_prefer_sba off<br>init<br>halt<br>echo "Ready for Remote Connections"<br></code></pre></td></tr></tbody></table></figure>
+<p>使用openocd连接待调试设备</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">openocd -f debug.cfg<br></code></pre></td></tr></tbody></table></figure>
+<p>连接上的话终端中会输出下面的内容</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">Open On-Chip Debugger 0.10.0+dev-00195-g933cb87 (2020-06-15-20:32)<br>Licensed under GNU GPL v2<br>For bug reports, read<br>    http://openocd.org/doc/doxygen/bugs.html<br>adapter speed: 1000 kHz<br>Info : auto-selecting first available session transport "jtag". To override use 'transport select <transport>'.<br>Info : clock speed 1000 kHz<br>Info : TAP riscv.cpu does not have IDCODE<br>Info : datacount=2 progbufsize=8<br>Info : Examined RISC-V core; found 1 harts<br>Info :  hart 0: XLEN=64, misa=0x8000000000141105<br>Info : Listening on port 3333 for gdb connections<br>Ready for Remote Connections<br>Info : Listening on port 6666 for tcl connections<br>Info : Listening on port 4444 for telnet connections<br></code></pre></td></tr></tbody></table></figure>
+<p>连接上openocd之后就可以使用gdb/tcl/telnet调试了，新建一个终端，输入<code>riscv64-unknown-elf-gdb</code>进入gdb。后面我以一个实际应用场景为例来说明。<br><a href="/images/notepic/mem-map.png" data-caption data-fancybox="images"><img src="/images/notepic/mem-map.png" alt></a><br>以上图的内存映射为例，这是一个运行linux的某开源64位riscv处理器。整个系统的boot流程可大致简化为<br><a href="/images/notepic/bootdemo.png" data-caption data-fancybox="images"><img src="/images/notepic/bootdemo.png" alt></a><br>在这套系统中，bootrom为fpga例化的片内sram，用来存储sd卡拷贝的代码以及linux设备树。而sd卡中存放bootloader以及linux镜像。</p>
+<h2 id="场景模拟">场景模拟<a class="post-anchor" href="#场景模拟"></a></h2><p>我们假定gdb调试需求为，不拷贝sd卡中内容，直接使用gdb把bootloader和linux镜像加载进ddr中，并且替换bootrom中设备树文件。</p>
+<h4 id="连接openocd">连接openocd<a class="post-anchor" href="#连接openocd"></a></h4><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">openocd -f debug.cfg<br></code></pre></td></tr></tbody></table></figure>
+<h4 id="连接gdb">连接gdb<a class="post-anchor" href="#连接gdb"></a></h4><p>创建一个新的终端,输入<code>riscv64-unknown-elf-gdb</code>进入gdb。随后在gdb的命令行中经行如下操作</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><code class="hljs shell">target remote localhost:3333                        ## 连接调试设备<br>file /folder/filename                               ## gdb打开要加载的sd卡内容<br>load                                                ## 把Linux镜像加load进ddr中<br>layout asm                                          ## gdb终端中显示汇源源码<br>set $pc=0x10ac8                                     ## 把pc指针设到需要加载linux设备树的地址<br>si                                                  ## 单步执行<br>b boot_other_hart                                   ## 在boot_other_hart语句出设置断点<br>c                                                   ## 全速执行，一直执行到断点处<br>restore /folder/filename.dtb binary 0x81200000      ## 加载设备树文件<br>c<br></code></pre></td></tr></tbody></table></figure>
+<p>此段涉及到文件路径，地址等命令都是伪代码，毕竟是实际例子来讲解，各位自行替换。大致理解不同命令起什么作用就行。更多gdb命令请自行查阅相关文档。</p>
+<p><strong>同样的openocd还可以配合telnet等工具使用，各位自行发掘</strong><br>我写博客主要是强化自己记忆力，假使有遇到相同难题，欢迎留言交流。</p>
 </body></html>
 
   
@@ -329,10 +259,10 @@
   <div class="post-guide">
     <div class="item left">
         
-          <a href="/2020/07/30/gdb%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/">openocd+gdb调试指北（riscv）</a>
-        
     </div>
     <div class="item right">
+        
+          <a href="/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/">git备忘录</a>
         
     </div>
   </div>
@@ -344,7 +274,7 @@
       作者：<a href="https://blog.hcatek.com">Salieri</a>
     </div>
     <div class="link">
-      链接：<a href="https://blog.hcatek.com/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/">https://blog.hcatek.com/2020/07/28/git%E5%A4%87%E5%BF%98%E5%BD%95/</a>
+      链接：<a href="https://blog.hcatek.com/2020/07/30/gdb%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/">https://blog.hcatek.com/2020/07/30/gdb%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/</a>
     </div>
     <div class="declare">
       本文基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>许可协议发布，欢迎转载，演绎，但是必须保留本文署名，且不得用于商业目的。如您有任何疑问或者授权方面的协商，请<a href="mailto:salierif@outlook.com">与我联系</a>。

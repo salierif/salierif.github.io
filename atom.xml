@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.hcatek.com/"/>
-  <updated>2020-07-29T08:24:36.053Z</updated>
+  <updated>2020-07-31T03:43:15.998Z</updated>
   <id>https://blog.hcatek.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>openocd+gdb调试指北（riscv）</title>
+    <link href="https://blog.hcatek.com/2020/07/30/gdb%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/"/>
+    <id>https://blog.hcatek.com/2020/07/30/gdb%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/</id>
+    <published>2020-07-30T11:24:47.000Z</published>
+    <updated>2020-07-31T03:43:15.998Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;openocd&quot;&gt;openocd&lt;a class=&quot;post-anchor&quot; href=&quot;#openocd&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;配置好openocd的配置文件&lt;/strong&gt;&lt;br&gt;如下所示
+      
+    
+    </summary>
+    
+    
+      <category term="Notes" scheme="https://blog.hcatek.com/categories/Notes/"/>
+    
+    
+      <category term="linux" scheme="https://blog.hcatek.com/tags/linux/"/>
+    
+      <category term="gdb" scheme="https://blog.hcatek.com/tags/gdb/"/>
+    
+      <category term="openocd" scheme="https://blog.hcatek.com/tags/openocd/"/>
+    
+  </entry>
   
   <entry>
     <title>git备忘录</title>
