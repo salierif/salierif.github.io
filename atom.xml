@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.hcatek.com/"/>
-  <updated>2020-07-31T03:54:54.732Z</updated>
+  <updated>2020-08-08T18:16:05.772Z</updated>
   <id>https://blog.hcatek.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vim/gvim</title>
+    <link href="https://blog.hcatek.com/2020/08/07/vim-200807/"/>
+    <id>https://blog.hcatek.com/2020/08/07/vim-200807/</id>
+    <published>2020-08-07T13:24:47.000Z</published>
+    <updated>2020-08-08T18:16:05.772Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;h2 id=&quot;vim的模式&quot;&gt;vim的模式&lt;a class=&quot;post-anchor&quot; href=&quot;#vim的模式&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;command mode&lt;br&gt;  此模式为一般命令模式，打开vim默认一
+      
+    
+    </summary>
+    
+    
+      <category term="Notes" scheme="https://blog.hcatek.com/categories/Notes/"/>
+    
+    
+      <category term="linux" scheme="https://blog.hcatek.com/tags/linux/"/>
+    
+      <category term="vim" scheme="https://blog.hcatek.com/tags/vim/"/>
+    
+  </entry>
   
   <entry>
     <title>openocd+gdb调试指北（riscv）</title>

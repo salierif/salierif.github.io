@@ -17,7 +17,7 @@
     <meta name="description" content="" />
     
     <title>
-      归档2020 - Salieri的技术小栈
+      vim/gvim - Salieri的技术小栈
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -28,6 +28,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vim的模式"><span class="toc-text">vim的模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按使用场景划分"><span class="toc-text">按使用场景划分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-简单阅读"><span class="toc-text">1.简单阅读</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-文本操作"><span class="toc-text">2.文本操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-实用技巧"><span class="toc-text">3.实用技巧</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -62,7 +67,7 @@
           首页
         </a>
         
-        <a href="/archives" class="current">
+        <a href="/archives" class="">
           归档
         </a>
         
@@ -116,7 +121,7 @@
             首页
           </a>
           
-          <a href="/archives" class="current">
+          <a href="/archives" class="">
             归档
           </a>
           
@@ -161,61 +166,149 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-    
-        <div class="title">
-            归档 
-             - 2020
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="/archives/2020" >
-                2020
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="/2020/08/07/vim-200807/" title="vim/gvim">
-                <span>2020/08/07</span>
-                <span>vim/gvim</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/07/30/gdb-200730/" title="openocd+gdb调试指北（riscv）">
-                <span>2020/07/30</span>
-                <span>openocd+gdb调试指北（riscv）</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="/2020/07/28/git-200729/" title="git备忘录">
-                <span>2020/07/28</span>
-                <span>git备忘录</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <span class="page-number current">1</span>
-</div>
-</div>
+      <div class="title">vim/gvim</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2020/08/07</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2020/08/07/vim-200807/" data-flag-title="vim/gvim">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/Notes">Notes</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/linux">linux</a>
+                  
+                
+                  
+                    <a href="/tags/vim">vim</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h2 id="vim的模式">vim的模式<a class="post-anchor" href="#vim的模式"></a></h2><ul>
+<li>command mode<br>  此模式为一般命令模式，打开vim默认一般都是一般命令模式，此时支持包括上下左右移动光标，复制粘贴等基本操作。</li>
+<li>insert mode<br>  此模式输入模式，在一般命令模式中输入[i, I, o, O, a, A, r, R]等按键，会切换至输入模式，此时可以对光标所在位置经行编辑，按[esc]可以返回一般命令模式。</li>
+<li>command-line mode<br>  此模式为命令行模式，输入[:,/,?]可以进入命令行模式，在此模式中可以执行读取，存储，搜索等各种vim指令。</li>
+</ul>
+<h2 id="按使用场景划分">按使用场景划分<a class="post-anchor" href="#按使用场景划分"></a></h2><h4 id="1-简单阅读">1.简单阅读<a class="post-anchor" href="#1-简单阅读"></a></h4><p>对于只需要打开文件，移动光标的阅读文本的使用场景。主要用到以下命令<br>|||<br>|:–:|:–:|<br>|:q|退出|<br>|:w|保存|<br>|h/j/k/l|左/下/上/右|<br>|ctrl+f|向下移动一页|<br>|ctrl+b|向上移动一页|<br>|ctrl+d|向下移动一页|<br>|ctrl+u|向上移动一页|<br>|number+h/j/k/l/space/enter|左/下/上/右移动number个数|<br>|number+G|跳转到具体行|</p>
+<h4 id="2-文本操作">2.文本操作<a class="post-anchor" href="#2-文本操作"></a></h4><ul>
+<li>选择复制粘贴<br><code>v</code>为字符选择<code>V</code>为整行选择。选中文本后，使用<code>d</code>删除（剪切），<code>y</code> 复制，<code>p</code> 粘贴。<code>ctrl+v</code> 为列操作。</li>
+<li>撤销与重做<br><code>u</code> 撤销前一个操作。<code>ctrl+r</code>重做前一个操作。</li>
+<li>文本查找<br><code>/word</code>查找光标之后全文。<code>？word</code>查找光标之前全文。 查找到复数个结果时，使用n重复查找下一个，N重复查找上一个。</li>
+<li>文本替换<br><code>:n1,n2s/word1/word2/g</code> 查找n1行-n2行中所偶word1，并替换成word2。<code>:1,$s/word1/word2/gc</code>查找第一行到最后一样中所有word1，并替换成word2，并确认每一个（confirm参数）</li>
+</ul>
+<h4 id="3-实用技巧">3.实用技巧<a class="post-anchor" href="#3-实用技巧"></a></h4><ul>
+<li><p>关键词补全</p>
+<table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ctrl+x –> ctrl+n</td>
+<td align="center">当前文件中搜索关键词</td>
+</tr>
+<tr>
+<td align="center">ctrl+x –> ctrl+f</td>
+<td align="center">当前目录文件中寻找关键词</td>
+</tr>
+<tr>
+<td align="center">ctrl+x –> ctrl+o</td>
+<td align="center">以拓展名作为语法补充，以vim内置关键词补全</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>文件比较<br>要比较a和b两个文件使用<code>vim -d a b</code></p>
+</li>
+<li><p>分屏编辑<br>使用<code>:sp filename</code>创建新分屏窗口。<code>ctrl+w+s</code>和<code>ctrl+w+v</code>分别为新建横向和纵向分屏</p>
+</li>
+</ul>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+    </div>
+    <div class="item right">
+        
+          <a href="/2020/07/30/gdb-200730/">openocd+gdb调试指北（riscv）</a>
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      作者：<a href="https://blog.hcatek.com">Salieri</a>
+    </div>
+    <div class="link">
+      链接：<a href="https://blog.hcatek.com/2020/08/07/vim-200807/">https://blog.hcatek.com/2020/08/07/vim-200807/</a>
+    </div>
+    <div class="declare">
+      本文基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>许可协议发布，欢迎转载，演绎，但是必须保留本文署名，且不得用于商业目的。如您有任何疑问或者授权方面的协商，请<a href="mailto:salierif@outlook.com">与我联系</a>。
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2020
