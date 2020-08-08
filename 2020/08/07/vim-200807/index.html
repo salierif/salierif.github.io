@@ -221,7 +221,51 @@
 <li>insert mode<br>  此模式输入模式，在一般命令模式中输入[i, I, o, O, a, A, r, R]等按键，会切换至输入模式，此时可以对光标所在位置经行编辑，按[esc]可以返回一般命令模式。</li>
 <li>command-line mode<br>  此模式为命令行模式，输入[:,/,?]可以进入命令行模式，在此模式中可以执行读取，存储，搜索等各种vim指令。</li>
 </ul>
-<h2 id="按使用场景划分">按使用场景划分<a class="post-anchor" href="#按使用场景划分"></a></h2><h4 id="1-简单阅读">1.简单阅读<a class="post-anchor" href="#1-简单阅读"></a></h4><p>对于只需要打开文件，移动光标的阅读文本的使用场景。主要用到以下命令<br>|||<br>|:–:|:–:|<br>|:q|退出|<br>|:w|保存|<br>|h/j/k/l|左/下/上/右|<br>|ctrl+f|向下移动一页|<br>|ctrl+b|向上移动一页|<br>|ctrl+d|向下移动一页|<br>|ctrl+u|向上移动一页|<br>|number+h/j/k/l/space/enter|左/下/上/右移动number个数|<br>|number+G|跳转到具体行|</p>
+<h2 id="按使用场景划分">按使用场景划分<a class="post-anchor" href="#按使用场景划分"></a></h2><h4 id="1-简单阅读">1.简单阅读<a class="post-anchor" href="#1-简单阅读"></a></h4><p>对于只需要打开文件，移动光标的阅读文本的使用场景。主要用到以下命令：</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:q</td>
+<td align="center">退出</td>
+</tr>
+<tr>
+<td align="center">:w</td>
+<td align="center">保存</td>
+</tr>
+<tr>
+<td align="center">h/j/k/l</td>
+<td align="center">左/下/上/右</td>
+</tr>
+<tr>
+<td align="center">ctrl+f</td>
+<td align="center">向下移动一页</td>
+</tr>
+<tr>
+<td align="center">ctrl+b</td>
+<td align="center">向上移动一页</td>
+</tr>
+<tr>
+<td align="center">ctrl+d</td>
+<td align="center">向下移动一页</td>
+</tr>
+<tr>
+<td align="center">ctrl+u</td>
+<td align="center">向上移动一页</td>
+</tr>
+<tr>
+<td align="center">number+h/j/k/l/space/enter</td>
+<td align="center">左/下/上/右移动number个数</td>
+</tr>
+<tr>
+<td align="center">number+G</td>
+<td align="center">跳转到具体行</td>
+</tr>
+</tbody></table>
 <h4 id="2-文本操作">2.文本操作<a class="post-anchor" href="#2-文本操作"></a></h4><ul>
 <li>选择复制粘贴<br><code>v</code>为字符选择<code>V</code>为整行选择。选中文本后，使用<code>d</code>删除（剪切），<code>y</code> 复制，<code>p</code> 粘贴。<code>ctrl+v</code> 为列操作。</li>
 <li>撤销与重做<br><code>u</code> 撤销前一个操作。<code>ctrl+r</code>重做前一个操作。</li>
